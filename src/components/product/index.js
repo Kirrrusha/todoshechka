@@ -30,8 +30,8 @@ class Product extends Component {
     if (this.state.hasError) return <div>Some Error in this product</div>
     return (
       <div className="product">
-        <div className="product-id">
-          {product.id}
+        <div className="product-number">
+          {product.id + 1}
         </div>
         <input className="product-text" value={product.name} onChange={this.changeText} />
 

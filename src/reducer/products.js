@@ -15,7 +15,7 @@ export default (state = {products: []}, action) => {
         ...state,
         {
           id: payload.id++,
-          name: ''
+          name: payload.val
         }
       ];
 
