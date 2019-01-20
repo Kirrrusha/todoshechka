@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Product from "../product";
 import {connect} from "react-redux";
 import {addProduct} from "../../ac";
+import './style.scss'
 
 class Products extends Component {
 
@@ -16,11 +17,8 @@ class Products extends Component {
   };
 
   get body() {
-    console.log('products component', this.props);
     const {products} = this.props;
-    // if (products.length) return null;
     return products.map(product => {
-      console.log(product);
       return <div key={product.id} className="products-block">
         <Product
           product={product}
@@ -33,14 +31,14 @@ class Products extends Component {
   render() {
     return (
       <div className="products">
-        <div>
-          <input
-              type="text"
-              onChange={this.onChangeHandler}
-              value={this.state.name}
-              onKeyDown={this.handleKeyDown}
-          />
-        </div>
+        <input
+          className="new-todo"
+          type="text"
+          onChange={this.onChangeHandler}
+          value={this.state.name}
+          onKeyDown={this.handleKeyDown}
+          placeholder="What needs to be done?"
+        />
         {this.body}
         {/*<button onClick={this.handleClick}>add</button>*/}
       </div>
@@ -48,18 +46,15 @@ class Products extends Component {
   }
 
   handleKeyDown = e => {
-    console.log(e.which);
     if (e.which === 13) {
       this.handleSubmit(e);
     } else if (e.which === 27) {
-      console.log(e.currentTarget.value);
       e.currentTarget.value = '';
       this.setState({ value: '' })
     }
   }
 
   onChangeHandler = (e) => {
-    console.log(e.currentTarget.value);
     this.setState({ value: e.currentTarget.value })
   }
 
@@ -68,20 +63,15 @@ class Products extends Component {
     const {addProduct, products} = this.props;
     if (val) {
       addProduct(products.length, val);
+      e.currentTarget.value = '';
+      this.setState({ value: '' })
     }
-  }
-
-  handleClick = (ev) => {
-    console.log(ev);
-    // const {addProduct, products} = this.props;
-    // addProduct(products.length);
   }
 }
 
 
 
 const mapStateToProps = (state) => {
-  console.log('mapStateToProps state', state);
   return {
     products: state.products
   }

@@ -2,20 +2,22 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {deleteProduct, editProduct} from "../../ac";
-import './style.css'
+import './style.scss'
 
 class Product extends Component {
 
   static propTypes = {
     product: PropTypes.shape({
-      id: PropTypes.number,
-      text: PropTypes.string
+      id: PropTypes.string,
+      text: PropTypes.string,
+      completed: PropTypes.bool.isRequired
     })
   };
 
   state = {
     hasError: false
   }
+
 
   componentDidCatch(err) {
     console.log('---', err);
@@ -25,17 +27,30 @@ class Product extends Component {
   }
 
   get body() {
-    // console.log(this.props);
     const {product} = this.props;
     if (this.state.hasError) return <div>Some Error in this product</div>
+    let className = 'product-text';
+    if (!product.completed) {
+      className += ' completed';
+    }
     return (
       <div className="product">
-        <div className="product-number">
-          {product.id + 1}
+        <div className="product-inf">
+          <div className="product-status">
+            <div className="checkbox">
+              <input
+                id={this.props.product.id}
+                type="checkbox"
+                onChange={this.handleChange('completed')}
+                checked={this.props.product.completed}
+              />
+              <label htmlFor={this.props.product.id}></label>
+            </div>
+          </div>
+          <input className={className} value={product.name} onChange={this.handleChange('name')}/>
         </div>
-        <input className="product-text" value={product.name} onChange={this.changeText} />
 
-        <button onClick={this.handleDelete}>delete me</button>
+        <div className="product-delete" onClick={this.handleDelete}></div>
       </div>
     )
   }
@@ -45,11 +60,11 @@ class Product extends Component {
     deleteProduct(product.id);
   }
 
-  changeText = (ev) => {
-    // console.log(ev.target.value);
-    console.log('product component', this.props);
+  handleChange = (type) => (ev) => {
     const {product, editProduct} = this.props;
-    const obj = {id: product.id, name: ev.target.value};
+    const {id, completed, name} = product;
+    const obj = type === 'name' ? {id, name: ev.target.value, completed} :
+      {id, name, completed: ev.target.checked};
     editProduct(obj);
   }
 
@@ -65,5 +80,4 @@ class Product extends Component {
 export default connect(
   null,
   {deleteProduct, editProduct}
-  // null
 )(Product);

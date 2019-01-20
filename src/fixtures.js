@@ -1,4 +1,4 @@
 export const LIST = [
-  {id: 0, name: 'React'},
-  {id: 1, name: 'Angular'}
+  {id: '0', name: 'React', completed: true},
+  {id: '1', name: 'Angular', completed: true}
 ];

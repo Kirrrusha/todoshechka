@@ -1,10 +1,7 @@
 import {ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT} from "../constants";
 
 export default (state = {products: []}, action) => {
-  const {type, payload} = action;
-  console.log(state);
-
-  console.log('reducer products', payload);
+  const {type, payload, randomId} = action;
 
   switch (type) {
     case DELETE_PRODUCT :
@@ -12,17 +9,18 @@ export default (state = {products: []}, action) => {
 
     case ADD_PRODUCT:
       return [
-        ...state,
         {
-          id: payload.id++,
-          name: payload.val
-        }
+          id: randomId,
+          name: payload.val,
+          completed: true
+        },
+        ...state
       ];
 
     case EDIT_PRODUCT:
       return state.map(product =>
         (product.id === payload.id) ?
-          {...product, name: payload.name} :
+          {...product, name: payload.name, completed: payload.completed} :
           product
       );
 

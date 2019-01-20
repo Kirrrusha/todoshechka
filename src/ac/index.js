@@ -3,23 +3,22 @@ import {ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT} from "../constants";
 export function deleteProduct(id) {
   return {
     type: DELETE_PRODUCT,
-    payload: { id }
+    payload: {id}
   }
 }
 
 export function addProduct(id, val) {
   return {
     type: ADD_PRODUCT,
-    payload: {id, val}
+    payload: {id, val},
+    generateId: true
   }
 }
 
 export function editProduct(product) {
-  console.log('ac', product);
-  const id = product.id;
-  const name = product.name;
+  const {id, name, completed} = product;
   return {
     type: EDIT_PRODUCT,
-    payload: {id, name}
+    payload: {id, name, completed}
   }
 }

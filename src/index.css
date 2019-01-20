@@ -1,33 +1,63 @@
 body {
-    width: 100vw;
-    height: 100vh;
-    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
+  width: 100vw;
+  height: 100vh;
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #4d4d4d; }
 
 #root {
-    width: inherit;
-    height: inherit;
-}
+  width: inherit;
+  height: inherit;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .app {
-    width: inherit;
-    height: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #f5f5f5;
-}
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 h1 {
-    font-size: 100px;
-    font-weight: 100;
-    text-align: center;
-    color: rgba(175, 47, 47, 0.15);
-    margin: 0;
-}
+  font-size: 100px;
+  font-weight: 100;
+  text-align: center;
+  color: rgba(175, 47, 47, 0.15);
+  margin: 0; }
 
-.products {
-    width: 500px;
-    color: #4d4d4d;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
+input:focus {
+  outline: none; }
+
+.checkbox-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: #ffffff; }
+
+.checkbox label {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 30px; }
+  .checkbox label:before, .checkbox label:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%; }
+  .checkbox label:after {
+    border: none; }
+
+.checkbox input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0; }
+  .checkbox input:checked + label:after {
+    background-size: 60%;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA4MCA4MCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgODAgODA7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iODAiIGhlaWdodD0iODAiPjxnPjxwb2x5Z29uIHN0eWxlPSJmaWxsOiM2NENGQkE7IiBwb2ludHM9IjIuNzExLDQzLjk5NyA4Ljk5NSwzNy43MTIgMjYuNDk3LDU1LjcxNCA3MS4wMDIsMTAuNzA5IDc3LjI5MSwxNi45OTggMjYuNDk4LDY3LjI5OCAgIi8+PC9nPjwvc3ZnPg==);
+    background-position: 50%;
+    background-repeat: no-repeat; }
