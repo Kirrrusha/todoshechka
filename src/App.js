@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Products from "./components/products";
 import Footer from "./components/footer";
+import ProductsPage from "./components/routes/products";
 import {Router, Switch, Route} from "react-router-dom";
 
 class App extends Component {
@@ -8,14 +9,11 @@ class App extends Component {
     return (
       <div className='app'>
         <h1>todos</h1>
-        {/*<Router>*/}
-          {/*<Switch>*/}
-            <Route path="/" component={Products} exact/>
-            <Route path="/active" component={Products} exact/>
-            <Route path="/completed" component={Products} exact/>
-          {/*</Switch>*/}
-        {/*</Router>*/}
-        {/*<Products />*/}
+          <Switch>
+            <Route exact path="/" component={Products}/>
+            <Route exact path="/active" component={Products}/>
+            <Route exact path="/completed" component={Products}/>
+          </Switch>
         <Footer />
       </div>
     );

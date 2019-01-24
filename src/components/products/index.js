@@ -9,7 +9,6 @@ class Products extends Component {
 
   static propTypes = {
     products: PropTypes.array,
-    // fetchData: PropTypes.func,
   };
 
   state = {

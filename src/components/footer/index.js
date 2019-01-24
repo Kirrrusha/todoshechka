@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './style.scss'
 import {connect} from "react-redux";
-import {Route, NavLink, Redirect} from "react-router-dom";
+import NavigationLink from "../navlink";
 
 
 class Footer extends Component {
@@ -11,10 +11,6 @@ class Footer extends Component {
   };
 
   static propTypes = {};
-
-  state = {};
-
-  nav = []
 
   render() {
     const activeItems = this.props.products.filter(e => e.completed).length;
@@ -25,17 +21,12 @@ class Footer extends Component {
           {activeItems} {!activeItems || activeItems > 1 ? 'items' : 'item'} left
         </div>
         <div className="nav">
-          <NavLink exact to="/" activeClassName="selected">all</NavLink>
-          <NavLink to="/active" activeClassName="selected">active</NavLink>
-          <NavLink to="/completed" activeClassName="selected">completed</NavLink>
+          <NavigationLink to="/" title="all" />
+          <NavigationLink to="/active" title="active" />
+          <NavigationLink to="/completed" title="completed" />
         </div>
       </div>
     );
-  }
-
-  active = (match, location) => {
-    console.log(match)
-    console.log(location)
   }
 
 }
