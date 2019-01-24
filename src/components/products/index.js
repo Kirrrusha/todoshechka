@@ -4,6 +4,7 @@ import Product from "../product";
 import {connect} from "react-redux";
 import {addProduct} from "../../ac";
 import './style.scss'
+import NavigationLink from "../navlink";
 
 class Products extends Component {
 
@@ -27,6 +28,24 @@ class Products extends Component {
     )
   }
 
+  get footer() {
+    const {filter} = this.props;
+    const activeItems = this.props.products.filter(e => e.completed).length;
+    if (!this.props.products.length) return null;
+    return (
+      <div className="footer">
+        <div className="items">
+          {activeItems} {!activeItems || activeItems > 1 ? 'items' : 'item'} left
+        </div>
+        <div className="nav">
+          <NavigationLink to="/" title='all' filter={filter}/>
+          <NavigationLink to="/active" title='active' filter={filter} />
+          <NavigationLink to="/completed" title='completed' filter={filter} />
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="products">
@@ -39,7 +58,7 @@ class Products extends Component {
           placeholder="What needs to be done?"
         />
         {this.body}
-        {/*<button onClick={this.handleClick}>add</button>*/}
+        {this.footer}
       </div>
     );
   }

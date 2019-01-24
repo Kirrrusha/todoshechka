@@ -20,7 +20,6 @@ class Product extends Component {
 
 
   componentDidCatch(err) {
-    console.log('---', err);
     this.setState({
       hasError: true
     });

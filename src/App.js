@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import Products from "./components/products";
-import Footer from "./components/footer";
-import ProductsPage from "./components/routes/products";
-import {Router, Switch, Route} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 
 class App extends Component {
+
   render() {
     return (
       <div className='app'>
         <h1>todos</h1>
           <Switch>
-            <Route exact path="/" component={Products}/>
-            <Route exact path="/active" component={Products}/>
-            <Route exact path="/completed" component={Products}/>
+            <Route exact path="/" component={Products} filter="all"/>
+            <Route exact path="/active" component={props => <Products {...props} filter="active" />}/>/>
+            <Route exact path="/completed" component={props => <Products {...props} filter="completed" />}/>/>
           </Switch>
-        <Footer />
       </div>
     );
   }
 }
-
 
 export default App;

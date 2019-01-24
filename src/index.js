@@ -6,8 +6,6 @@ import {Provider} from "react-redux";
 import store from './store';
 import './normalize.css'
 import './index.scss'
-import {ConnectedRouter} from "connected-react-router";
-import history from './history';
 import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(

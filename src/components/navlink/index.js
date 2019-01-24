@@ -14,7 +14,7 @@ class NavigationLink extends Component {
   render() {
     const {to, title} = this.props;
     return (
-      <NavLink to={to} className="nav-link" activeClassName="selected">
+      <NavLink exact to={to} className="nav-link" activeClassName="selected">
         {title}
       </NavLink>
     );
